@@ -1,0 +1,307 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={STAT1378 Project Part I},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{STAT1378 Project Part I}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+This report presents a statistical analysis of the dataset ``project.csv,'' which contains information on height, weight, gender, and physical activity for individuals aged 26-45. The analysis aims to answer three research questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a linear relationship between height and weight?
+\item
+  Is the mean height of males and females the same?
+\item
+  Is there any association between gender and the amount of physical activity?
+\end{enumerate}
+
+\newpage
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+The pursuit of knowledge in the realm of statistics often begins with asking fundamental questions and seeking empirical evidence to answer them. In this statistical analysis, we embark on an exploration of the dataset ``project.csv,'' which offers insights into various aspects of a specific population, individuals aged 26-45. The fundamental questions we seek to answer are as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Is there a linear relationship between height and weight?}
+
+  The inquiry into the association between an individual's height and weight is a classic pursuit with multifaceted implications. Understanding the existence and nature of such a relationship holds significance in fields ranging from health and fitness to anthropometry. A confirmed relationship could potentially aid in the development of predictive models and inform healthcare strategies.
+\item
+  \textbf{Is the mean height of males and females the same?}
+
+  Gender-based differences in physical characteristics have long been a subject of inquiry and discussion. In this case, we focus on the mean height of males and females within the given age group. A discernible difference could have implications for understanding the physiological variances between genders, which are of interest to both the medical and scientific communities.
+\item
+  \textbf{Is there any association between gender and the amount of physical activity?}
+
+  The correlation between gender and physical activity is a topic of societal interest, particularly in the context of public health and fitness promotion. An examination of this association is a critical step in understanding patterns of physical activity among different gender groups. The results of this analysis may inform targeted interventions to promote healthier lifestyles.
+\end{enumerate}
+
+To address these questions, we employ a robust set of statistical tools and methods. The dataset provides a valuable resource from which we can extract meaningful insights. It is important to note that these questions do not exist in isolation; they reflect the curiosity of researchers and the broader scientific community regarding the relationships between these variables.
+
+In the following sections, we will delve into the details of our methodology, providing a step-by-step account of the statistical tests used to investigate each question. The results will be discussed and interpreted, shedding light on the underlying patterns and relationships in the data. This analysis is conducted with the intention of adding to our collective knowledge and promoting a data-driven understanding of the phenomena under examination.
+
+Before we embark on this journey through statistical inquiry, let us briefly acknowledge the significance of these questions and explore the broader context in which they reside. It is through the synthesis of statistical analysis and contextual understanding that we can derive meaningful insights that contribute to our understanding of the world.
+
+\newpage
+
+\hypertarget{methodology}{%
+\section{Methodology}\label{methodology}}
+
+Statistics is a branch of mathematics that focuses on the analysis of extensive data. It involves the collection, examination, and representation of numerical information in a meaningful format. Statistics find applications in various domains such as engineering, medicine, population studies, economics, business, politics, and numerous other areas of research. While the roots of statistics can be traced back to ancient times, its practical utilization gained significant traction in the late 1700s.
+
+\hypertarget{research-question-1-is-there-a-linear-relationship-between-height-and-weight}{%
+\subsection{Research Question 1: Is there a linear relationship between height and weight?}\label{research-question-1-is-there-a-linear-relationship-between-height-and-weight}}
+
+To address this inquiry, the researcher employs linear regression as a method to ascertain the connection between an individual's height and weight. Correlation serves as a frequently utilized statistical model for quantifying the linear relationship between two variables. One common metric for gauging this linear correlation is Karl-Pearson's coefficient of correlation (Fox, J 2015), which ranges from -1 to +1. The magnitude of `r' signifies the strength of the association between the two variables (Fox, J 2015).
+
+Regression analysis is another prevalent statistical approach for assessing relationships among variables. Through regression analysis, we can estimate the approximate value of the dependent variable when adjustments are made to the independent variable. Various regression analysis techniques exist, typically involving at least one dependent variable and one or more independent variables (Agresti 2018).
+
+Linear regression was the pioneering form of regression analysis and has found wide-ranging practical applications. The vector form of the linear regression equation is expressed as: 𝑦 = 𝑎 + 𝑏𝑥 + 𝑒, where `𝑦' represents the dependent variable, `𝑥' stands for the independent variable, and `𝑒' denotes the random error. In this equation, the regression parameter `𝑎' corresponds to the intercept (on the y-axis), and the regression parameter `𝑏' signifies the slope of the regression line. It is assumed that the random error term `𝑒' is uncorrelated, possesses a mean of 0, and exhibits constant variance. Notably, a positive slope `𝑏' implies a positive relationship between `x' and `y,' indicating that as `x' increases, `y' also increases. Conversely, a negative `𝑏' signifies a negative relationship between `x' and `y,' suggesting that as `x' increases, `y' decreases (Montgomery 2012).
+
+In the specific context of this study, the researcher defines `𝑦' as weight, `𝑥' as height, and `𝑏' as slope. The researcher's objective is to examine whether the slope is equal to zero, as a non-zero slope suggests a correlation between the two variables.
+
+\hypertarget{research-question-2-is-the-mean-height-of-males-and-females-the-same}{%
+\subsection{Research Question 2: Is the mean height of males and females the same?}\label{research-question-2-is-the-mean-height-of-males-and-females-the-same}}
+
+To address this inquiry, the researcher conducts an independent sample t-test, aiming to assess and compare the average heights between different genders.
+
+The independent sample t-test is employed for comparing the means of two distinct groups. This analysis is applicable when dealing with interval data for these groups. It does not assume a normal distribution, although it is essential that the standard deviations of the two groups are roughly equal. If the sample sizes are either equal or quite similar, the assumption about equal standard deviations becomes less critical. A useful guideline for evaluating the equality of standard deviations is to check if the larger standard deviation is less than twice the smaller one. If the sample sizes are equal, this is not a concern; however, when sample sizes vary, interpreting the t-test results can be problematic if the group with the larger standard deviation has the smaller sample size (Montgomery, D. 2012).
+
+\hypertarget{research-question-3-is-there-any-association-between-gender-and-the-amount-of-physical-activity}{%
+\subsection{Research Question 3: Is there any association between gender and the amount of physical activity?}\label{research-question-3-is-there-any-association-between-gender-and-the-amount-of-physical-activity}}
+
+To address this question, the researcher employs a Chi-square test of independence to assess and compare the heights between different genders.
+
+The Chi-Square test of independence is a statistical method used to determine if there is a significant association between two nominal (categorical) variables. It involves comparing the frequency of each category within one nominal variable across the categories of another nominal variable. This data is typically organized in a contingency table, where rows represent categories for one variable, and columns represent categories for the other variable. The nul hypothesis for this test assumes that there is no relationship between gender and empathy, while the alternative hypothesis suggests that a relationship exists, such as difference in high-empathy individuals between genders(Chi-square test of independence).
+
+The assumptions for this test include:
+- Mutually exclusive categories: The categories of the variables should be distinct, with each subject belonging to a single category for each variable. In this study, both genders and levels of physical activity are indeed mutually exclusive.
+- Categorical variables: Both variables should be categorical in nature, typically at the nominal level. However, ordinal, interval, or ratio data grouped into categorical categories can also be used. In this case, the variables being examined are gender and the level of physical activity, both of which are categorical.
+- Cell Expected Frequency: The expected frequency in each cell of the contingency table should be 5 or more in at least 80\% of the cells, ensuring that no cell has an expected count less than one. This assumption helps determine the required sample size for a given number of cells in the Chi-Square test, allowing for an appropriate normal approximation. Verification of this assumption will be addressed in the subsequent `Results' section.
+
+\newpage
+
+\hypertarget{results-and-conclusion}{%
+\section{Results and Conclusion}\label{results-and-conclusion}}
+
+\textbf{Research Question 1}
+
+\begin{center}\includegraphics{vignettes_files/figure-latex/linear regression-1} \end{center}
+
+\begin{verbatim}
+## Results of Important Values: 
+## 
+## 1. Estimated Slope ( slope ):
+## (Intercept)      height 
+## -65.1509590   0.7749303 
+## 
+## 2. 95% Confidence Intervals for slope :
+##                   2.5 %      97.5 %
+## (Intercept) -80.3654793 -49.9364388
+## height        0.6872029   0.8626578
+## 
+## 3. t-value: 17.33413 
+## 
+## 4. Degrees of Freedom (df): 998 
+## 
+## 5. p-value: 4.807171e-59 
+## 
+## Decision: At 5% significance level, the Null Hypothesis is rejected
+\end{verbatim}
+
+\begin{verbatim}
+## Decision: Reject H0 at a 0.05 significance level.
+\end{verbatim}
+
+\begin{verbatim}
+## Conclusion: Based on the linear regression analysis, we Reject H0 the null hypothesis.
+\end{verbatim}
+
+\textbf{Research Question 2}
+
+\begin{verbatim}
+## Results of Important Values: 
+## 
+## 1. t-statistic: 39.84779 
+## 
+## 2. Degrees of Freedom (df): 998 
+## 
+## 3. p-value: 1.531954e-208 
+## 
+## 4. Estimated Means (x = Female y = Male ):
+## mean of x mean of y 
+##  178.1299  167.9800 
+## 
+## 5. 95% Confidence Interval: 9.650119 10.64981 
+## 
+## Decision: At 5% significance level, the Null Hypothesis is rejected
+\end{verbatim}
+
+\begin{verbatim}
+## Decision: Reject H0 at a 0.05 significance level.
+\end{verbatim}
+
+\begin{verbatim}
+## Conclusion: Based on the two-sample t-test, we Reject H0 the null hypothesis.
+\end{verbatim}
+
+\includegraphics{vignettes_files/figure-latex/t_test-1.pdf}
+
+\textbf{Research question 3}
+
+\begin{table}
+
+\caption{(\#tab:chi-squared test)Contingency Table of Gender vs. Physical Activity}
+\centering
+\begin{tabular}[t]{l|r|r|r}
+\hline
+  & Intense & Moderate & None\\
+\hline
+Female & 109 & 233 & 133\\
+\hline
+Male & 141 & 259 & 125\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## Results of Important Values: 
+## 
+## 1. X-squared (statistics): 3.226111 
+## 
+## 2. Degrees of Freedom (df): 2 
+## 
+## 3. p-value: 0.1992778 
+## 
+## Decision: At 5% significance level, the Null Hypothesis is not rejected
+\end{verbatim}
+
+\begin{verbatim}
+## Decision: Do not reject H0 at a 0.05 significance level.
+\end{verbatim}
+
+\begin{verbatim}
+## Conclusion: Based on the chi-squared test, we Do not reject H0 the null hypothesis.
+\end{verbatim}
+
+\includegraphics{vignettes_files/figure-latex/chi-squared test-1.pdf}
+\#\# Overall Analysis
+
+In this comprehensive analysis of the dataset, we explored three research questions to gain insights into the relationships between various variables.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Linear Relationship between Height and Weight}: The linear regression analysis revealed a significant linear relationship between height and weight (p \textless{} 0.05). The positive coefficient of the height variable indicates that as height increases, weight tends to increase, confirming a strong positive association between these variables.
+\item
+  \textbf{Mean Height of Males and Females}: A two-sample t-test indicated a significant difference in the mean height between males and females (p \textless{} 0.05). We confidently rejected the null hypothesis that the means are equal, demonstrating that the mean height differs significantly between genders.
+\item
+  \textbf{Association between Gender and Physical Activity}: The chi-squared test of independence showed no significant association between gender and the amount of physical activity (p \textgreater{} 0.05). This result does not support the alternative hypothesis, indicating that there is no profound association between gender and physical activity.
+\end{enumerate}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+In summary, our analysis provides robust evidence supporting the relationships and differences examined in the research questions. These findings have implications for understanding the interplay between height and weight, height differences between genders, and the association between gender and physical activity in the given dataset.
+
+This concludes our statistical analysis of the dataset, addressing the research questions and providing meaningful insights into the data.
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begin{itemize}
+\item
+  Agresti, A. (2018). Categorical Data Analysis. Wiley.
+\item
+  Fox, J. (2015). Goodness of Fit. Wiley.
+\item
+  Montgomery, D. (2012). Introduction to Linear Regression Analysis. Wiley.
+\end{itemize}
+
+\end{document}

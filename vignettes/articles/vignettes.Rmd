@@ -1,0 +1,272 @@
+---
+title: "STAT1378 Project Part I"
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+  bookdown::html_document2: default
+  bookdown::gitbook: default
+  bookdown::word_document2:
+    fig_caption: false
+params:
+  data_file: "project.csv"  # Default data file
+  significance_level: 0.05
+  output_format: "pdf"  # Set to "html" for HTML output
+  geometry: a4 paper,left=2cm,right=2cm,top=2cm,bottom=2cm
+  bibliography: references.bib #Specify bibtex file
+  
+---
+
+```{r setup, include=FALSE}
+# Load necessary R packages
+library(tidyverse)
+library(knitr)
+library(broom)
+
+# Load the scales package for percent formatting
+library(scales)
+
+# Load the data file defined in parameters
+data <- read.csv("project.csv")
+```
+
+# Abstract
+
+This report presents a statistical analysis of the dataset "project.csv," which contains information on height, weight, gender, and physical activity for individuals aged 26-45. The analysis aims to answer three research questions:
+
+1. Is there a linear relationship between height and weight?
+2. Is the mean height of males and females the same?
+3. Is there any association between gender and the amount of physical activity?
+
+\newpage
+
+# Introduction
+
+The pursuit of knowledge in the realm of statistics often begins with asking fundamental questions and seeking empirical evidence to answer them. In this statistical analysis, we embark on an exploration of the dataset "project.csv," which offers insights into various aspects of a specific population, individuals aged 26-45. The fundamental questions we seek to answer are as follows:
+
+1. **Is there a linear relationship between height and weight?**
+   
+   The inquiry into the association between an individual's height and weight is a classic pursuit with multifaceted implications. Understanding the existence and nature of such a relationship holds significance in fields ranging from health and fitness to anthropometry. A confirmed relationship could potentially aid in the development of predictive models and inform healthcare strategies.
+
+2. **Is the mean height of males and females the same?**
+   
+   Gender-based differences in physical characteristics have long been a subject of inquiry and discussion. In this case, we focus on the mean height of males and females within the given age group. A discernible difference could have implications for understanding the physiological variances between genders, which are of interest to both the medical and scientific communities.
+
+3. **Is there any association between gender and the amount of physical activity?**
+   
+   The correlation between gender and physical activity is a topic of societal interest, particularly in the context of public health and fitness promotion. An examination of this association is a critical step in understanding patterns of physical activity among different gender groups. The results of this analysis may inform targeted interventions to promote healthier lifestyles.
+
+To address these questions, we employ a robust set of statistical tools and methods. The dataset provides a valuable resource from which we can extract meaningful insights. It is important to note that these questions do not exist in isolation; they reflect the curiosity of researchers and the broader scientific community regarding the relationships between these variables.
+
+In the following sections, we will delve into the details of our methodology, providing a step-by-step account of the statistical tests used to investigate each question. The results will be discussed and interpreted, shedding light on the underlying patterns and relationships in the data. This analysis is conducted with the intention of adding to our collective knowledge and promoting a data-driven understanding of the phenomena under examination.
+
+Before we embark on this journey through statistical inquiry, let us briefly acknowledge the significance of these questions and explore the broader context in which they reside. It is through the synthesis of statistical analysis and contextual understanding that we can derive meaningful insights that contribute to our understanding of the world.
+
+\newpage
+
+# Methodology
+
+Statistics is a branch of mathematics that focuses on the analysis of extensive data. It involves the collection, examination, and representation of numerical information in a meaningful format. Statistics find applications in various domains such as engineering, medicine, population studies, economics, business, politics, and numerous other areas of research. While the roots of statistics can be traced back to ancient times, its practical utilization gained significant traction in the late 1700s.
+
+## Research Question 1: Is there a linear relationship between height and weight?
+
+To address this inquiry, the researcher employs linear regression as a method to ascertain the connection between an individual's height and weight. Correlation serves as a frequently utilized statistical model for quantifying the linear relationship between two variables. One common metric for gauging this linear correlation is Karl-Pearson's coefficient of correlation (Fox, J 2015), which ranges from -1 to +1. The magnitude of 'r' signifies the strength of the association between the two variables (Fox, J 2015).
+
+Regression analysis is another prevalent statistical approach for assessing relationships among variables. Through regression analysis, we can estimate the approximate value of the dependent variable when adjustments are made to the independent variable. Various regression analysis techniques exist, typically involving at least one dependent variable and one or more independent variables (Agresti 2018).
+
+Linear regression was the pioneering form of regression analysis and has found wide-ranging practical applications. The vector form of the linear regression equation is expressed as: 𝑦 = 𝑎 + 𝑏𝑥 + 𝑒, where '𝑦' represents the dependent variable, '𝑥' stands for the independent variable, and '𝑒' denotes the random error. In this equation, the regression parameter '𝑎' corresponds to the intercept (on the y-axis), and the regression parameter '𝑏' signifies the slope of the regression line. It is assumed that the random error term '𝑒' is uncorrelated, possesses a mean of 0, and exhibits constant variance. Notably, a positive slope '𝑏' implies a positive relationship between 'x' and 'y,' indicating that as 'x' increases, 'y' also increases. Conversely, a negative '𝑏' signifies a negative relationship between 'x' and 'y,' suggesting that as 'x' increases, 'y' decreases (Montgomery 2012).
+
+In the specific context of this study, the researcher defines '𝑦' as weight, '𝑥' as height, and '𝑏' as slope. The researcher's objective is to examine whether the slope is equal to zero, as a non-zero slope suggests a correlation between the two variables.
+
+## Research Question 2: Is the mean height of males and females the same?
+
+To address this inquiry, the researcher conducts an independent sample t-test, aiming to assess and compare the average heights between different genders.
+
+The independent sample t-test is employed for comparing the means of two distinct groups. This analysis is applicable when dealing with interval data for these groups. It does not assume a normal distribution, although it is essential that the standard deviations of the two groups are roughly equal. If the sample sizes are either equal or quite similar, the assumption about equal standard deviations becomes less critical. A useful guideline for evaluating the equality of standard deviations is to check if the larger standard deviation is less than twice the smaller one. If the sample sizes are equal, this is not a concern; however, when sample sizes vary, interpreting the t-test results can be problematic if the group with the larger standard deviation has the smaller sample size (Montgomery, D. 2012).
+
+## Research Question 3: Is there any association between gender and the amount of physical activity?
+
+To address this question, the researcher employs a Chi-square test of independence to assess and compare the heights between different genders. 
+
+The Chi-Square test of independence is a statistical method used to determine if there is a significant association between two nominal (categorical) variables. It involves comparing the frequency of each category within one nominal variable across the categories of another nominal variable. This data is typically organized in a contingency table, where rows represent categories for one variable, and columns represent categories for the other variable. The nul hypothesis for this test assumes that there is no relationship between gender and empathy, while the alternative hypothesis suggests that a relationship exists, such as difference in high-empathy individuals between genders(Chi-square test of independence).
+
+The assumptions for this test include:
+- Mutually exclusive categories: The categories of the variables should be distinct, with each subject belonging to a single category for each variable. In this study, both genders and levels of physical activity are indeed mutually exclusive. 
+- Categorical variables: Both variables should be categorical in nature, typically at the nominal level. However, ordinal, interval, or ratio data grouped into categorical categories can also be used. In this case, the variables being examined are gender and the level of physical activity, both of which are categorical.
+- Cell Expected Frequency: The expected frequency in each cell of the contingency table should be 5 or more in at least 80% of the cells, ensuring that no cell has an expected count less than one. This assumption helps determine the required sample size for a given number of cells in the Chi-Square test, allowing for an appropriate normal approximation. Verification of this assumption will be addressed in the subsequent 'Results' section.
+
+\newpage
+
+# Results and Conclusion
+
+**Research Question 1**
+```{r linear regression, fig.align = 'center' ,echo = FALSE}
+# Scatter plot
+ggplot(data, aes(x = height, y = weight)) +
+  geom_point() +
+  labs(
+    title = "Height vs. Weight",
+    x = "Height (cm)",
+    y = "Weight (kg)"
+  )
+
+# Linear regression analysis
+linear_model <- lm(weight ~ height, data = data)
+
+# Decision and Conclusion
+decision.lm <- function(linearmodel, level = 0.95, testParameter) {
+  cat("Results of Important Values:", "\n\n")
+  cat("1. Estimated Slope (", testParameter, "):\n")
+  print(coef(linearmodel))
+  cat("\n2.", percent(level), "Confidence Intervals for", testParameter, ":\n")
+  print(confint(linearmodel, level = level))
+  cat("\n3. t-value:", summary(linearmodel)$coefficients["height", "t value"], "\n\n")
+  cat("4. Degrees of Freedom (df):", summary(linearmodel)$df[2], "\n\n")
+  cat("5. p-value:", coef(summary(linearmodel))["height", "Pr(>|t|)"], "\n\n")
+  
+  if (coef(summary(linearmodel))["height", "Pr(>|t|)"] < (1 - level)) {
+    cat("Decision: At", percent(1 - level), "significance level, the Null Hypothesis is rejected\n")
+  } else {
+    cat("Decision: At", percent(1 - level), "significance level, the Null Hypothesis is not rejected\n")
+  }
+}
+
+decision.lm(linear_model, level = 0.95, testParameter = "slope")
+p_value <- summary(linear_model)$coef[2, 4]
+alpha <- 0.05  # You should define your significance level here
+if (p_value < alpha) {
+  decision <- "Reject H0"
+} else {
+  decision <- "Do not reject H0"
+}
+cat("Decision:", decision, "at a", alpha, "significance level.\n")
+cat("Conclusion: Based on the linear regression analysis, we", decision, "the null hypothesis.")
+
+
+```
+
+**Research Question 2**
+```{r t_test, echo = FALSE}
+# Data for males and females
+males <- subset(data, gender == "Male")
+females <- subset(data, gender == "Female")
+
+# Perform a two-sample t-test
+t_test_result <- t.test(males$height, females$height, var.equal = TRUE)
+
+decision.t <- function(t_test_result, level = 0.95, dataX, dataY) {
+  # Report t-test results
+  cat("Results of Important Values:", "\n\n")
+  cat("1. t-statistic:", t_test_result$statistic, "\n\n")
+  cat("2. Degrees of Freedom (df):", t_test_result$parameter, "\n\n")
+  cat("3. p-value:", t_test_result$p.value, "\n\n")
+  cat("4. Estimated Means (x =", dataX, "y =", dataY, "):\n")
+  print(t_test_result$estimate)
+  cat("\n5.", percent(level), "Confidence Interval:", t_test_result$conf.int, "\n\n")
+
+  if (t_test_result$p.value < (1 - level)) {
+    cat("Decision: At", percent(1 - level), "significance level, the Null Hypothesis is rejected\n\n")
+  } else {
+    cat("Decision: At", percent(1 - level), "significance level, the Null Hypothesis is not rejected\n\n")
+  }
+}
+
+decision.t(t_test_result, dataX = "Female", dataY = "Male")
+
+# Decision and Conclusion
+p_value <- t_test_result$p.value
+alpha <- params$significance_level
+if (p_value < alpha) {
+  decision <- "Reject H0"
+} else {
+  decision <- "Do not reject H0"
+}
+cat("Decision:", decision, "at a", alpha, "significance level.\n")
+cat("Conclusion: Based on the two-sample t-test, we", decision, "the null hypothesis.")
+
+# Create a box plot with advanced formatting
+ggplot(data, aes(x = gender, y = height, fill = gender)) +
+  geom_boxplot() +
+  labs(
+    title = "Height by Gender",
+    x = "Gender",
+    y = "Height (cm)"
+  ) +
+  theme_minimal()
+```
+
+**Research question 3**
+```{r chi-squared test, echo = FALSE}
+# Create a contingency table
+contingency_table <- table(data$gender, data$phys)
+
+# Display the contingency table as a table
+kable(contingency_table, caption = "Contingency Table of Gender vs. Physical Activity")
+
+# Perform a chi-squared test for association
+chi_squared_result <- chisq.test(data$gender, data$phys)
+
+# Extract relevant information from chi-squared result
+chi_squared_summary <- data.frame(
+  Statistic = chi_squared_result$statistic,
+  Degrees_of_Freedom = chi_squared_result$parameter,
+  P_Value = chi_squared_result$p.value
+)
+
+decision.chi <- function(chi_squared_result, level = 0.95){
+  # Report regression results
+  cat("Results of Important Values:", "\n\n")
+  cat("1. X-squared (statistics):", chi_squared_result$statistic, "\n\n")
+  cat("2. Degrees of Freedom (df):", chi_squared_result$parameter, "\n\n")
+  cat("3. p-value:", chi_squared_result$p.value, "\n\n")
+  
+  if (chi_squared_result$p.value < (1-level)) {
+    cat("Decision: At", percent(1-level), "significance level, the Null Hypothesis is rejected\n\n")
+  } else {
+    cat("Decision: At", percent(1-level), "significance level, the Null Hypothesis is not rejected\n\n")
+  }
+}
+
+decision.chi(chi_squared_result)
+
+# Decision and Conclusion
+p_value <- chi_squared_result$p.value
+alpha <- params$significance_level
+if (p_value < alpha) {
+  decision <- "Reject H0"
+} else {
+  decision <- "Do not reject H0"
+}
+cat("Decision:", decision, "at a", alpha, "significance level.\n")
+cat("Conclusion: Based on the chi-squared test, we", decision, "the null hypothesis.")
+
+# Create a bar plot to visualize the association between gender and physical activity
+ggplot(data, aes(x = gender, fill = phys)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Association Between Gender and Physical Activity",
+    x = "Gender",
+    y = "Count"
+  )
+```
+## Overall Analysis
+
+In this comprehensive analysis of the dataset, we explored three research questions to gain insights into the relationships between various variables.
+
+1. **Linear Relationship between Height and Weight**: The linear regression analysis revealed a significant linear relationship between height and weight (p < 0.05). The positive coefficient of the height variable indicates that as height increases, weight tends to increase, confirming a strong positive association between these variables.
+
+2. **Mean Height of Males and Females**: A two-sample t-test indicated a significant difference in the mean height between males and females (p < 0.05). We confidently rejected the null hypothesis that the means are equal, demonstrating that the mean height differs significantly between genders.
+
+3. **Association between Gender and Physical Activity**: The chi-squared test of independence showed no significant association between gender and the amount of physical activity (p > 0.05). This result does not support the alternative hypothesis, indicating that there is no profound association between gender and physical activity.
+
+# Conclusion
+
+In summary, our analysis provides robust evidence supporting the relationships and differences examined in the research questions. These findings have implications for understanding the interplay between height and weight, height differences between genders, and the association between gender and physical activity in the given dataset.
+
+This concludes our statistical analysis of the dataset, addressing the research questions and providing meaningful insights into the data.
+
+# References
+- Agresti, A. (2018). Categorical Data Analysis. Wiley.
+
+- Fox, J. (2015). Goodness of Fit. Wiley.
+
+- Montgomery, D. (2012). Introduction to Linear Regression Analysis. Wiley.
